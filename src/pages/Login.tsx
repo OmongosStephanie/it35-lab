@@ -62,7 +62,7 @@ import {
           </IonGrid>
           <IonInput label="Username" >
           </IonInput>
-          <IonInput type="password" label="Password" value="NeverGonnaGiveYouUp">
+          <IonInput type="password" label="Password" value="Stephanie">
             <IonInputPasswordToggle  slot="end"></IonInputPasswordToggle>
           </IonInput>
           <IonButton onClick={() => doLogin()} expand="full">
