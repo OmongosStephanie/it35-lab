@@ -1,5 +1,10 @@
 import { 
     IonButtons,
+      IonCard,
+      IonCardContent,
+      IonCardHeader,
+      IonCardSubtitle,
+      IonCardTitle,
       IonContent, 
       IonHeader, 
       IonMenuButton, 
@@ -19,16 +24,15 @@ import {
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          Feed
-        </div>
+        <IonCard>
+      <img alt="Silhouette of mountains" src="https://cdn.shopify.com/s/files/1/0790/7904/7461/articles/ljhldfn.jpg?v=1715036208" />
+      <IonCardHeader>
+        <IonCardTitle>Card Title</IonCardTitle>
+        <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+      </IonCardHeader>
+
+      <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+    </IonCard>
         </IonContent>
       </IonPage>
     );

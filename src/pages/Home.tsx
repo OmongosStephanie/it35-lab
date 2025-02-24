@@ -20,6 +20,9 @@ import { Route, Redirect } from 'react-router';
 import Favorites from './Home.tabs/Favorite';
 import Feed from './Home.tabs/Feed';
 import Search from './Home.tabs/Search';
+import React from 'react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
+
 
   const Home: React.FC = () => {
     const tabs = [
