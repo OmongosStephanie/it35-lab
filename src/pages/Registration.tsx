@@ -16,7 +16,6 @@ import {
   IonText,
   IonAlert,
   IonModal,
-  IonButtons,
   IonLabel
 } from '@ionic/react';
 
@@ -51,8 +50,11 @@ const Registration: React.FC = () => {
   };
 
   const confirmRegistration = () => {
-    // Proceed with registration
-    console.log('User registered!');
+    // Store the user in localStorage
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    // Close the modal and show success modal
     setShowModal(false);
     setShowSuccessModal(true);
 
