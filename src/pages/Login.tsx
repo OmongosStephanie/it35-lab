@@ -18,8 +18,9 @@ import {
   IonToast
 } from '@ionic/react';
 
+// Mock user data for testing purposes
 const mockUsers = [
-  { username: '', password: '' } 
+  { username: 'testuser', password: 'testpassword' } // valid mock user
 ];
 
 const Login: React.FC = () => {
@@ -34,18 +35,28 @@ const Login: React.FC = () => {
   const doLogin = () => {
     // Simulating API request
     setTimeout(() => {
-      // Check if user exists in mockUsers
-      const user = mockUsers.find(u => u.username === username && u.password === password);
-      
-      if (user) {
-        // Login success
-        setToastMessage('Login successful!');
-        setToastColor('success');
+      try {
+        // Simulating API error (uncomment the next line to test the error scenario)
+        // throw new Error("API Error: Unable to process request");
+
+        // Check if user exists in mockUsers
+        const user = mockUsers.find(u => u.username === username && u.password === password);
+        
+        if (user) {
+          // Login success
+          setToastMessage('Login successful!');
+          setToastColor('success');
+          setShowToast(true);
+          navigation.push('/it35-lab/app', 'forward', 'replace');
+        } else {
+          // Invalid credentials
+          setShowAlert(true);
+        }
+      } catch (error) {
+        // API Error
+        setToastMessage('API Error: Please try again later.');
+        setToastColor('danger');
         setShowToast(true);
-        navigation.push('/it35-lab/app', 'forward', 'replace');
-      } else {
-        // Invalid credentials
-        setShowAlert(true);
       }
     }, 1000);
   };
@@ -108,7 +119,7 @@ const Login: React.FC = () => {
         isOpen={showAlert}
         onDidDismiss={() => setShowAlert(false)}
         header="Login Failed"
-        message="Incorrect email or password."
+        message="Incorrect username or password."
         buttons={['OK']}
       />
 
