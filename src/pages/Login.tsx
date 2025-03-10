@@ -20,7 +20,7 @@ import {
 
 // Mock user data for testing purposes
 const mockUsers = [
-  { username: 'testuser', password: 'testpassword' } // valid mock user
+  { username: '', password: '' } // valid mock user
 ];
 
 const Login: React.FC = () => {
