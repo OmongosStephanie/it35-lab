@@ -19,12 +19,12 @@ import {
 } from '@ionic/react';
 
 const mockUsers = [
-  { username: 'john.doe@example.com', password: '12345' } // Example user for testing
+  { username: '', password: '' } 
 ];
 
 const Login: React.FC = () => {
   const navigation = useIonRouter();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
     // Simulating API request
     setTimeout(() => {
       // Check if user exists in mockUsers
-      const user = mockUsers.find(u => u.username === email && u.password === password);
+      const user = mockUsers.find(u => u.username === username && u.password === password);
       
       if (user) {
         // Login success
@@ -77,10 +77,10 @@ const Login: React.FC = () => {
             </IonRow>
           </IonGrid>
           <IonInput 
-            label="Email" 
-            placeholder="Enter Email" 
-            value={email}
-            onIonInput={e => setEmail(e.detail.value!)} 
+            label="Username" 
+            placeholder="Enter Username" 
+            value={username}
+            onIonInput={e => setUsername(e.detail.value!)} 
           />
           <IonInput 
             type="password" 
