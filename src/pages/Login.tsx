@@ -70,11 +70,11 @@ import {
                 overflow: 'hidden' 
               }}
             >
-              <IonIcon 
-                icon={logoIonic}
-                color='primary'
-                style={{ fontSize: '120px', color: '#6c757d' }} 
-              />
+            <img 
+               src="https://i.pinimg.com/736x/d1/2f/dc/d12fdc235cf8cc65639b077a454a0313.jpg" 
+               alt="User Avatar" 
+               style={{ width: '100%', height: '100%' }} 
+            />
             </IonAvatar>
             <h1 style={{
               display: 'flex',
