@@ -51,7 +51,6 @@ const FeedContainer = () => {
   const createPost = async () => {
     if (!postContent || !user || !username) return;
   
-    // Fetch avatar URL
     const { data: userData, error: userError } = await supabase
       .from('users')
       .select('user_avatar_url')
@@ -65,7 +64,6 @@ const FeedContainer = () => {
   
     const avatarUrl = userData?.user_avatar_url || 'https://ionicframework.com/docs/img/demos/avatar.svg';
   
-    // Insert post with avatar URL
     const { data, error } = await supabase
       .from('posts')
       .insert([
@@ -113,7 +111,8 @@ const FeedContainer = () => {
       <IonContent>
         {user ? (
           <>
-            <IonCard>
+            {/* Post Creation Card */}
+            <IonCard style={{ margin: '1rem 0', borderRadius: '15px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
               <IonCardHeader>
                 <IonCardTitle>Create Post</IonCardTitle>
               </IonCardHeader>
@@ -121,16 +120,18 @@ const FeedContainer = () => {
                 <IonInput
                   value={postContent}
                   onIonChange={e => setPostContent(e.detail.value!)}
-                  placeholder="Write a post..."
+                  placeholder="What's on your mind?"
+                  style={{ marginBottom: '1rem', borderRadius: '10px' }}
                 />
               </IonCardContent>
               <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }}>
-                <IonButton onClick={createPost}>Post</IonButton>
+                <IonButton onClick={createPost} color="primary" style={{ borderRadius: '20px' }}>Post</IonButton>
               </div>
             </IonCard>
   
+            {/* Post List */}
             {posts.map(post => (
-              <IonCard key={post.post_id} style={{ marginTop: '2rem' }}>
+              <IonCard key={post.post_id} style={{ marginTop: '1rem', borderRadius: '15px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
                 <IonCardHeader>
                   <IonRow>
                     <IonCol size="1.85">
@@ -153,15 +154,15 @@ const FeedContainer = () => {
                           })
                         }
                       >
-                        <IonIcon color="secondary" icon={pencil} />
+                        <IonIcon color="primary" icon={pencil} />
                       </IonButton>
                     </IonCol>
                   </IonRow>
                 </IonCardHeader>
   
                 <IonCardContent>
-                  <IonText style={{ color: 'White' }}>
-                    <h1>{post.post_content}</h1>
+                  <IonText>
+                    <p>{post.post_content}</p>
                   </IonText>
                 </IonCardContent>
   
@@ -178,6 +179,7 @@ const FeedContainer = () => {
                       startEditingPost(post);
                       setPopoverState({ open: false, event: null, postId: null });
                     }}
+                    style={{ padding: '0.5rem', fontSize: '14px' }}
                   >
                     Edit
                   </IonButton>
@@ -188,6 +190,7 @@ const FeedContainer = () => {
                       deletePost(post.post_id);
                       setPopoverState({ open: false, event: null, postId: null });
                     }}
+                    style={{ padding: '0.5rem', fontSize: '14px' }}
                   >
                     Delete
                   </IonButton>
@@ -200,6 +203,7 @@ const FeedContainer = () => {
         )}
       </IonContent>
   
+      {/* Edit Post Modal */}
       <IonModal isOpen={isModalOpen} onDidDismiss={() => setIsModalOpen(false)}>
         <IonHeader>
           <IonToolbar>
@@ -211,14 +215,16 @@ const FeedContainer = () => {
             value={postContent}
             onIonChange={e => setPostContent(e.detail.value!)}
             placeholder="Edit your post..."
+            style={{ marginBottom: '1rem', borderRadius: '10px' }}
           />
         </IonContent>
-        <IonFooter>
-          <IonButton onClick={savePost}>Save</IonButton>
-          <IonButton onClick={() => setIsModalOpen(false)}>Cancel</IonButton>
+        <IonFooter style={{ padding: '0.5rem' }}>
+          <IonButton onClick={savePost} color="primary" style={{ borderRadius: '20px' }}>Save</IonButton>
+          <IonButton onClick={() => setIsModalOpen(false)} style={{ borderRadius: '20px' }}>Cancel</IonButton>
         </IonFooter>
       </IonModal>
   
+      {/* Alert for success */}
       <IonAlert
         isOpen={isAlertOpen}
         onDidDismiss={() => setIsAlertOpen(false)}
@@ -228,8 +234,6 @@ const FeedContainer = () => {
       />
     </>
   );
-  
-
 };
 
 export default FeedContainer;
