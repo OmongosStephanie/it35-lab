@@ -14,6 +14,9 @@ import { logoIonic } from 'ionicons/icons';
 import { useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 
+// Import the Google Font in your main index.html <head>:
+// <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
 const AlertBox: React.FC<{ message: string; isOpen: boolean; onClose: () => void }> = ({ message, isOpen, onClose }) => {
   return (
     <IonAlert
@@ -51,13 +54,17 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent className="ion-padding" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1521737604893-d14cc237f11d)', // background image URL
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100%',
-        backdropFilter: 'blur(4px)',
-      }}>
+      <IonContent 
+        className="ion-padding" 
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1521737604893-d14cc237f11d)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          height: '100%',
+          backdropFilter: 'blur(4px)',
+          fontFamily: `'Poppins', sans-serif` // ✅ Apply the font here
+        }}
+      >
         <div style={{
           backgroundColor: 'rgba(255, 255, 255, 0.85)', 
           padding: '30px', 
@@ -90,22 +97,28 @@ const Login: React.FC = () => {
               fontWeight: 'bold',
               color: '#3880ff',
               marginBottom: '5px'
-            }}>USER LOGIN</h1>
-            <p style={{ fontSize: '14px', color: '#555' }}>Welcome back! Please login to your account.</p>
+            }}>LOGIN</h1>
+            <p style={{ fontSize: '14px', color: '#555' }}>
+              Welcome back! Please login to your account.
+            </p>
           </div>
 
           <IonInput
             label="Email" 
             labelPlacement="floating" 
             fill="outline"
+            shape='round'
             type="email"
             placeholder="Enter Email"
             value={email}
             onIonChange={e => setEmail(e.detail.value!)}
             style={{ marginBottom: '15px', '--highlight-color-focused': '#3880ff' }}
           />
-          <IonInput     
+          <IonInput 
+            label="Password"    
+            labelPlacement="floating"
             fill="outline"
+            shape='round'
             type="password"
             placeholder="Password"
             value={password}
@@ -115,19 +128,31 @@ const Login: React.FC = () => {
             <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
           </IonInput>
 
-          <IonButton onClick={doLogin} expand="block" shape="round" color="primary" style={{ marginBottom: '15px' }}>
+          <IonButton 
+            onClick={doLogin} 
+            expand="block" 
+            shape="round" 
+            color="warning" 
+            style={{ marginBottom: '15px' }}
+          >
             Login
           </IonButton>
 
-          <IonButton routerLink="/it35-lab/register" expand="block" fill="clear" color="medium" shape="round">
+          <IonButton 
+            routerLink="/it35-lab/register" 
+            expand="block" 
+            fill="clear" 
+            color="medium" 
+            shape="round"
+          >
             Don't have an account? Register here
           </IonButton>
         </div>
 
-        {/* Reusable AlertBox Component */}
+        {/* AlertBox */}
         <AlertBox message={alertMessage} isOpen={showAlert} onClose={() => setShowAlert(false)} />
 
-        {/* IonToast for success message */}
+        {/* IonToast */}
         <IonToast
           isOpen={showToast}
           onDidDismiss={() => setShowToast(false)}
