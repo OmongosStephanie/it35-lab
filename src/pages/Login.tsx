@@ -84,7 +84,7 @@ const Login: React.FC = () => {
               width: '120px',
               height: '120px',
               marginBottom: '10px',
-              border: '3px solid #3880ff',
+              border: '4px solid #6200ea',
             }}>
               <img 
                 src="https://i.pinimg.com/736x/d1/2f/dc/d12fdc235cf8cc65639b077a454a0313.jpg" 
@@ -95,7 +95,7 @@ const Login: React.FC = () => {
             <h1 style={{
               fontSize: '24px',
               fontWeight: 'bold',
-              color: '#3880ff',
+              color: '#6200ea',
               marginBottom: '5px'
             }}>LOGIN</h1>
             <p style={{ fontSize: '14px', color: '#555' }}>
@@ -142,7 +142,7 @@ const Login: React.FC = () => {
             routerLink="/it35-lab/register" 
             expand="block" 
             fill="clear" 
-            color="medium" 
+            color="primary" 
             shape="round"
           >
             Don't have an account? Register here
